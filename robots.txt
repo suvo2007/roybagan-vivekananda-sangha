@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://suvo2007.github.io/roybagan-vivekananda-sangha/sitemap.xml
