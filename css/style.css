@@ -24,12 +24,22 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.96);backdro
 #menu a.cta{background:var(--red);color:#fff;border-radius:999px;padding:8px 18px}
 #menu a.cta:after{display:none}
 #menu a.cta:hover{background:var(--gold);color:var(--ink)}
+.menuToggle{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.gtranslate{min-width:86px}
+.gtranslate .goog-te-gadget{font-family:'Hind Siliguri',sans-serif!important;font-size:0!important;color:transparent!important}
+.gtranslate .goog-te-gadget>span,.gtranslate .goog-te-gadget img{display:none!important}
+.gtranslate select.goog-te-combo{font-size:.85rem;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-family:'Hind Siliguri',sans-serif;max-width:110px}
+body>.skiptranslate.goog-te-gadget,iframe.goog-te-banner-frame{display:none!important}
+body{top:0!important}
 .burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;padding:0;position:relative;z-index:70}
 .burger:before,.burger span,.burger:after{content:"";position:absolute;left:11px;right:11px;height:2px;background:var(--red);transition:.3s}
 .burger:before{top:14px}.burger span{top:21px}.burger:after{top:28px}
-header.open .burger:before{top:21px;transform:rotate(45deg)}
-header.open .burger:after{top:21px;transform:rotate(-45deg)}
-header.open .burger span{opacity:0}
+/* works even if JS never loads: the checkbox (hidden) + its label (the burger
+   button) toggle everything with pure CSS. JS, when it does load, only adds
+   the dimmed backdrop-click-to-close and auto-close-on-link-tap extras. */
+.menuToggle:checked ~ .burger:before,header.open .burger:before{top:21px;transform:rotate(45deg)}
+.menuToggle:checked ~ .burger:after,header.open .burger:after{top:21px;transform:rotate(-45deg)}
+.menuToggle:checked ~ .burger span,header.open .burger span{opacity:0}
 #shade{display:none}
 @media(max-width:860px){
  .burger{display:block}
@@ -38,7 +48,7 @@ header.open .burger span{opacity:0}
  #menu a{color:#F8EEDF;font-size:1.1rem;padding:12px 8px;border-bottom:1px solid #3A2F55}
  #menu a:hover,#menu a.active{color:var(--gold)}#menu a:after{display:none}
  #menu a.cta{margin-top:12px;text-align:center;border:0}
- header.open #menu{transform:none}
+ .menuToggle:checked ~ #menu,header.open #menu{transform:none}
  header.open #shade{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55}
 }
 
