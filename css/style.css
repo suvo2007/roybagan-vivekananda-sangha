@@ -25,13 +25,13 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.96);backdro
 #menu a.cta:after{display:none}
 #menu a.cta:hover{background:var(--gold);color:var(--ink)}
 .menuToggle{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
-.gtranslate{min-width:86px}
-.gtranslate .goog-te-gadget{font-family:'Hind Siliguri',sans-serif!important;font-size:0!important;color:transparent!important}
-.gtranslate .goog-te-gadget>span,.gtranslate .goog-te-gadget img{display:none!important}
-.gtranslate select.goog-te-combo{font-size:.85rem;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-family:'Hind Siliguri',sans-serif;max-width:110px}
-body>.skiptranslate.goog-te-gadget,iframe.goog-te-banner-frame{display:none!important}
-body{top:0!important}
-.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;padding:0;position:relative;z-index:70}
+/* the burger button, the menu drawer and the dimmed backdrop are now all
+   direct children of <body> (not nested inside <header>), so position:fixed
+   on them is guaranteed to measure against the real viewport — some mobile
+   browsers mishandle a fixed element nested inside a position:sticky
+   ancestor and shrink it to its content height instead of the full screen,
+   which is what was happening before. */
+.burger{display:none;position:fixed;top:calc(env(safe-area-inset-top,0px) + 11px);right:18px;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;padding:0;z-index:70}
 .burger:before,.burger span,.burger:after{content:"";position:absolute;left:11px;right:11px;height:2px;background:var(--red);transition:.3s}
 .burger:before{top:14px}.burger span{top:21px}.burger:after{top:28px}
 /* works even if JS never loads: the checkbox (hidden) + its label (the burger
@@ -49,7 +49,7 @@ body{top:0!important}
  #menu a:hover,#menu a.active{color:var(--gold)}#menu a:after{display:none}
  #menu a.cta{margin-top:12px;text-align:center;border:0}
  .menuToggle:checked ~ #menu,header.open #menu{transform:none}
- header.open #shade{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55}
+ .menuToggle:checked ~ #shade,header.open #shade{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55}
 }
 
 /* hero */
