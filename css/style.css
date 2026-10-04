@@ -1,1 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500;800&family=Hind+Siliguri:wght@400;500;600&display=swap');
+:root{--paper:#FBF7F0;--ink:#2A1512;--red:#B3261E;--gold:#C8951F;--night:#1E1533;--mute:#6E5B55;--line:#E7DCCB}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px;width:100%;max-width:100%;overflow-x:hidden}
+body{margin:0;width:100%;max-width:100%;background:var(--paper);color:var(--ink);font-family:'Hind Siliguri',system-ui,sans-serif;line-height:1.75;overflow-x:hidden}
+.wrap,section,header,footer,.hero,.pagehead{max-width:100vw}
+h1,h2,h3,h4{font-family:'Noto Serif Bengali',Georgia,serif;line-height:1.35;margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.paar{height:12px;background:repeating-linear-gradient(90deg,var(--red) 0 18px,var(--gold) 18px 22px,var(--red) 22px 40px)}
 
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:1120px;margin:auto;padding:8px 18px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Noto Serif Bengali',serif;font-weight:800;color:var(--red);font-size:clamp(.9rem,3.2vw,1.1rem);line-height:1.25}
+.brand img{width:44px;height:44px;transition:transform .6s}
+.brand:hover img{transform:rotate(360deg) scale(1.08)}
+#menu ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+#menu a{position:relative;display:block;padding:8px 12px;font-weight:600;transition:color .25s,transform .25s}
+#menu a:after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+#menu a:hover,#menu a.active{color:var(--red)}
+#menu a:hover:after,#menu a.active:after{transform:scaleX(1)}
+#menu a.cta{background:var(--red);color:#fff;border-radius:999px;padding:8px 18px}
+#menu a.cta:after{display:none}
+#menu a.cta:hover{background:var(--gold);color:var(--ink)}
+.menuToggle{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.gtranslate{min-width:86px}
+.gtranslate .goog-te-gadget{font-family:'Hind Siliguri',sans-serif!important;font-size:0!important;color:transparent!important}
+.gtranslate .goog-te-gadget>span,.gtranslate .goog-te-gadget img{display:none!important}
+.gtranslate select.goog-te-combo{font-size:.85rem;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-family:'Hind Siliguri',sans-serif;max-width:110px}
+body>.skiptranslate.goog-te-gadget,iframe.goog-te-banner-frame{display:none!important}
+body{top:0!important}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;padding:0;position:relative;z-index:70}
+.burger:before,.burger span,.burger:after{content:"";position:absolute;left:11px;right:11px;height:2px;background:var(--red);transition:.3s}
+.burger:before{top:14px}.burger span{top:21px}.burger:after{top:28px}
+/* works even if JS never loads: the checkbox (hidden) + its label (the burger
+   button) toggle everything with pure CSS. JS, when it does load, only adds
+   the dimmed backdrop-click-to-close and auto-close-on-link-tap extras. */
+.menuToggle:checked ~ .burger:before,header.open .burger:before{top:21px;transform:rotate(45deg)}
+.menuToggle:checked ~ .burger:after,header.open .burger:after{top:21px;transform:rotate(-45deg)}
+.menuToggle:checked ~ .burger span,header.open .burger span{opacity:0}
+#shade{display:none}
+@media(max-width:860px){
+ .burger{display:block}
+ #menu{position:fixed;top:0;right:0;bottom:0;width:min(78vw,300px);background:var(--night);padding:84px 22px 24px;transform:translateX(105%);transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:60;overflow-y:auto}
+ #menu ul{flex-direction:column;gap:4px}
+ #menu a{color:#F8EEDF;font-size:1.1rem;padding:12px 8px;border-bottom:1px solid #3A2F55}
+ #menu a:hover,#menu a.active{color:var(--gold)}#menu a:after{display:none}
+ #menu a.cta{margin-top:12px;text-align:center;border:0}
+ .menuToggle:checked ~ #menu,header.open #menu{transform:none}
+ header.open #shade{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55}
+}
+
+/* hero */
+.hero{position:relative;background:var(--night);color:#F8EEDF;text-align:center;overflow:hidden;min-height:min(84vh,720px);display:flex;align-items:center;justify-content:center}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+.slide.on{opacity:1}
+.slide i{position:absolute;inset:-24px;background-size:cover;background-position:center;filter:blur(22px) brightness(.7)}
+.slide b{position:absolute;inset:0;background-size:contain;background-position:center;background-repeat:no-repeat}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,28,.5),rgba(20,10,28,.78));z-index:1}
+.hero .in{position:relative;z-index:2;padding:48px 18px 70px;width:100%}
+.hero .biglogo{width:clamp(76px,18vw,116px);display:block;margin:0 auto 12px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+.hero h1{font-size:clamp(1.9rem,7.5vw,4.2rem);font-weight:800;text-shadow:0 3px 18px rgba(0,0,0,.7)}
+.hero .en{margin:4px 0 0;color:#F3D896;font-weight:500;letter-spacing:.05em;font-size:clamp(1rem,3vw,1.25rem)}
+.tag{display:inline-block;margin-top:20px;padding:8px 18px;border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);font-family:'Noto Serif Bengali',serif;font-size:clamp(1rem,3.4vw,1.5rem)}
+.btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.btn{display:inline-block;padding:11px 22px;border-radius:999px;font-weight:600;border:2px solid var(--gold);color:#fff;transition:transform .25s,background .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn.fill{background:var(--gold);color:var(--ink)}
+#dots{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:3}
+#dots button{width:11px;height:11px;border-radius:50%;border:1px solid #F3D896;background:transparent;padding:0;cursor:pointer}
+#dots button.on{background:#F3D896}
+
+/* page header (inner pages) */
+.pagehead{background:var(--night);color:#F8EEDF;text-align:center;padding:56px 18px 44px;position:relative;overflow:hidden}
+.pagehead h1{font-size:clamp(1.8rem,6vw,3rem);color:#fff}
+.pagehead p{color:#F3D896;margin-top:8px}
+.pagehead:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(200,149,31,.25),transparent 55%)}
+
+/* sections / reveal */
+.sec{padding:clamp(40px,8vw,64px) 0}
+.sec h2{font-size:clamp(1.4rem,4.5vw,2.1rem);color:var(--red);margin-bottom:8px}
+.sub{color:var(--mute);max-width:60ch;margin:0 0 26px}
+.alt{background:rgba(179,38,30,.05)}
+.dark{background:var(--night);color:#F8EEDF}.dark h2{color:var(--gold)}.dark .sub{color:#CDBBA8}
+/* content is visible by default; JS only adds a subtle fade-in.
+   if JS ever fails to load, nothing stays hidden. */
+.reveal-pre{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal-pre.reveal-show{opacity:1;transform:none}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.card{padding:18px;border-top:4px solid var(--gold);background:rgba(200,149,31,.1);transition:transform .3s}
+.card:hover{transform:translateY(-5px)}
+.card h3{font-size:1.05rem;margin-bottom:4px}.card p{margin:0;color:var(--mute);font-size:.95rem}
+
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.gal figure{margin:0;border-radius:6px;overflow:hidden;background:#000;position:relative}
+.gal img{width:100%;height:280px;object-fit:cover;transition:transform .5s}
+.gal figure:hover img{transform:scale(1.07)}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent);color:#fff;font-size:.9rem}
+
+.yr{display:flex;flex-direction:column;justify-content:flex-end;min-height:190px;padding:16px;color:#fff;border-radius:4px 4px 40px 4px;transition:transform .3s}
+.yr:hover{transform:translateY(-6px) rotate(-1deg)}
+.yr b{font-family:'Noto Serif Bengali',serif;font-size:1.7rem}.yr span{font-size:.85rem;opacity:.9}
+.y1{background:linear-gradient(160deg,#B3261E,#5B0F2B)}.y2{background:linear-gradient(160deg,#C8951F,#7A4A0C)}.y3{background:linear-gradient(160deg,#3D2C6B,#1E1533)}.y4{background:linear-gradient(160deg,#1F6F5C,#0F3B33)}
+
+.fix{display:grid;gap:10px;max-width:640px}
+.fix div{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px;border:1px solid #4B3D6B;border-radius:6px;transition:border-color .3s}
+.fix div:hover{border-color:var(--gold)}
+
+.formbox{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:2px dashed var(--red);padding:24px;border-radius:8px}
+.formbox h2{margin:0 0 4px}.formbox .sub{margin:0}
+
+/* donation page */
+.donate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:8px}
+.dcard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;text-align:center;transition:transform .3s,box-shadow .3s}
+.dcard:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(179,38,30,.12)}
+.dcard .ic{font-size:2rem}
+.dcard h3{margin:10px 0 6px;color:var(--red)}
+.upi-box{background:var(--night);color:#F8EEDF;border-radius:10px;padding:26px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.upi-box code{background:rgba(255,255,255,.1);padding:8px 14px;border-radius:6px;font-size:1.05rem;color:var(--gold)}
+.thanks{border-left:4px solid var(--gold);padding:14px 18px;background:rgba(200,149,31,.08);margin-top:24px}
+
+/* footer */
+footer{background:var(--night);color:#CDBBA8;text-align:center;padding:34px 18px 20px}
+footer .logo{width:60px;margin:0 auto 10px}
+.social{display:flex;gap:14px;justify-content:center;margin:16px 0}
+.social a{width:40px;height:40px;border-radius:50%;border:1px solid #4B3D6B;display:flex;align-items:center;justify-content:center;transition:transform .25s,background .25s,border-color .25s}
+.social a:hover{transform:translateY(-4px);background:var(--gold);border-color:var(--gold)}
+.social svg{width:18px;height:18px;fill:#F8EEDF}
+.social a:hover svg{fill:#1E1533}
+.credit{font-size:.72rem;opacity:.55;margin-top:22px;letter-spacing:.02em}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* opening splash — logo intro on the homepage */
+#splash{position:fixed;inset:0;z-index:100;background:var(--night);display:flex;align-items:center;justify-content:center;text-align:center;color:#F8EEDF;animation:splashOut .9s ease 2.6s forwards}
+.nosplash #splash{display:none}
+.sp-in{padding:24px}
+.sp-logo{position:relative;width:min(46vw,190px);height:min(46vw,190px);margin:0 auto 20px}
+.sp-logo img{width:100%;height:100%;object-fit:contain;animation:sp-pop 1.1s cubic-bezier(.2,.9,.3,1.2) both}
+.sp-logo:before{content:"";position:absolute;inset:-14px;border:2px dashed var(--gold);border-radius:50%;animation:sp-spin 9s linear infinite;opacity:.8}
+#splash h2{font-family:'Noto Serif Bengali',serif;font-size:clamp(1.5rem,6vw,2.4rem);animation:sp-rise .9s ease .6s both}
+#splash p{margin:6px 0 0;color:#F3D896;font-size:clamp(1rem,3.6vw,1.3rem);animation:sp-rise .9s ease 1s both}
+@keyframes sp-pop{from{opacity:0;transform:scale(.5) rotate(-12deg)}to{opacity:1;transform:none}}
+@keyframes sp-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes sp-spin{to{transform:rotate(360deg)}}
+@keyframes splashOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+@media(prefers-reduced-motion:reduce){#splash{animation:splashOut .01s linear 1.2s forwards}.sp-logo img,#splash h2,#splash p{animation:none;opacity:1}}
