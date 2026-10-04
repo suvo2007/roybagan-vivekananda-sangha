@@ -34,10 +34,9 @@ try{if(sessionStorage.getItem('rvs-splash')){document.documentElement.className+
 <div class="paar"></div>
 <header>
 <div class="bar">
-<a class="brand" href="index.html"><img src="assets/logo.png" alt="লোগো">বিবেকানন্দ সংঘ<br>রায়বাগান</a>
-</div>
-</header>
 <input type="checkbox" id="menuToggle" class="menuToggle">
+<a class="brand" href="index.html"><img src="assets/logo.png" alt="লোগো">বিবেকানন্দ সংঘ<br>রায়বাগান</a>
+<div id="google_translate_element" class="gtranslate"></div>
 <label for="menuToggle" class="burger" aria-label="মেনু"><span></span></label>
 <nav id="menu"><ul>
 <li><a class="active" href="index.html">হোম</a></li>
@@ -49,6 +48,8 @@ try{if(sessionStorage.getItem('rvs-splash')){document.documentElement.className+
 <li><a href="about.html">আমাদের কথা</a></li>
 <li><a class="cta" href="anudan.html">অনুদান দিন</a></li>
 </ul></nav>
+</div>
+</header>
 <div id="shade"></div>
 
 <section class="hero" id="top">
@@ -76,7 +77,7 @@ try{if(sessionStorage.getItem('rvs-splash')){document.documentElement.className+
 <figure><img src="assets/mahamaya-banner.jpg" alt="মাটি থেকে মহামায়া থিম ব্যানার"><figcaption>এবারের থিম — মাটি থেকে মহামায়া</figcaption></figure>
 <figure><img src="assets/durga-idol.jpg" alt="দুর্গা প্রতিমা"><figcaption>দুর্গা প্রতিমা</figcaption></figure>
 <figure><img src="assets/khuti-puja.jpg" alt="খুঁটি পুজো আমন্ত্রণ — ৭৮ বর্ষ, শারদ উৎসবের শুভারম্ভ"><figcaption>খুঁটি পুজো — শারদ উৎসবের শুভারম্ভ</figcaption></figure>
-<figure><img src="\assets\khuti-puja-ceremony.jpg" alt="খুঁটি স্থাপনের মুহূর্ত"><figcaption>খুঁটি স্থাপন</figcaption></figure>
+<figure><img src="assets\khuti-puja-ceremony.jpg" alt="খুঁটি স্থাপনের মুহূর্ত"><figcaption>খুঁটি স্থাপন</figcaption></figure>
 </div>
 <p style="margin-top:18px"><a class="btn" style="border-color:var(--red);color:var(--red)" href="durga-puja.html">বিস্তারিত দেখুন →</a></p>
 </div></section>
@@ -113,6 +114,8 @@ try{if(sessionStorage.getItem('rvs-splash')){document.documentElement.className+
 </div>
 <p class="credit">Site Devlope by Shubham Das &amp; Rupam Das</p>
 </footer>
+<script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"bn",includedLanguages:"en,hi",layout:google.translate.TranslateElement.InlineLayout.SIMPLE},"google_translate_element");}</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
