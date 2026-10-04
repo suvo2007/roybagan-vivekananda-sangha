@@ -124,13 +124,53 @@ try{if(sessionStorage.getItem('rvs-splash')){document.documentElement.className+
 <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"bn",includedLanguages:"en,hi",layout:google.translate.TranslateElement.InlineLayout.SIMPLE},"google_translate_element");}</script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script src="js/main.js"></script>
- <script>
-const emailLink = document.getElementById("emailLink");
-
-if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    emailLink.href =
-        "https://mail.google.com/mail/?view=cm&fs=1&to=roybaganvivekanandasangha@gmail.com";
+<!-- Google Translate -->
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: "bn",
+            includedLanguages: "en,hi",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        },
+        "google_translate_element"
+    );
 }
 </script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Main JavaScript -->
+<script src="js/main.js"></script>
+
+<!-- Smart Email Link -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const emailLink = document.getElementById("emailLink");
+
+    if (!emailLink) return;
+
+    const email = "roybaganvivekanandasangha@gmail.com";
+
+    // Mobile → Default Email App
+    // PC/Desktop → Gmail Web
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+
+        emailLink.href = "mailto:" + email;
+        emailLink.removeAttribute("target");
+
+    } else {
+
+        emailLink.href =
+            "https://mail.google.com/mail/?view=cm&fs=1&to=" + email;
+
+        emailLink.target = "_blank";
+        emailLink.rel = "noopener";
+    }
+
+});
+</script>
+
 </body>
 </html>
