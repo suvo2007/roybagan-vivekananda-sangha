@@ -122,5 +122,13 @@ try{if(sessionStorage.getItem('rvs-splash')){document.documentElement.className+
 <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"bn",includedLanguages:"en,hi",layout:google.translate.TranslateElement.InlineLayout.SIMPLE},"google_translate_element");}</script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script src="js/main.js"></script>
+ <script>
+const emailLink = document.getElementById("emailLink");
+
+if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    emailLink.href =
+        "https://mail.google.com/mail/?view=cm&fs=1&to=roybaganvivekanandasangha@gmail.com";
+}
+</script>
 </body>
 </html>
