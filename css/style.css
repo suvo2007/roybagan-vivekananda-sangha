@@ -11,15 +11,17 @@ img{max-width:100%;display:block}
 .paar{height:12px;background:repeating-linear-gradient(90deg,var(--red) 0 18px,var(--gold) 18px 22px,var(--red) 22px 40px)}
 
 /* header */
-header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+/* NOTE: header deliberately has NO backdrop-filter / filter / transform.
+   Any of those make this element a "containing block" for position:fixed
+   descendants in most mobile browsers — which is exactly why the mobile
+   menu drawer was being capped to the header's own height earlier instead
+   of the full screen. Don't add blur/filter/transform back onto header
+   without re-testing the mobile menu afterwards. */
+header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.98);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:1120px;margin:auto;padding:8px 18px}
 .brand{display:flex;align-items:center;gap:10px;font-family:'Noto Serif Bengali',serif;font-weight:800;color:var(--red);font-size:clamp(.9rem,3.2vw,1.1rem);line-height:1.25}
 .brand img{width:44px;height:44px;transition:transform .6s}
 .brand:hover img{transform:rotate(360deg) scale(1.08)}
-/* desktop: #menu now lives outside <header> in the markup (see note below),
-   so it's pinned here with fixed positioning to sit exactly where the old
-   inline nav used to be, at the header's own height. */
-#menu{position:fixed;top:0;right:18px;height:64px;display:flex;align-items:center;z-index:51}
 #menu ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;align-items:center}
 #menu a{position:relative;display:block;padding:8px 12px;font-weight:600;transition:color .25s,transform .25s}
 #menu a:after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
@@ -29,13 +31,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.96);backdro
 #menu a.cta:after{display:none}
 #menu a.cta:hover{background:var(--gold);color:var(--ink)}
 .menuToggle{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
-/* the burger button, the menu drawer and the dimmed backdrop are now all
-   direct children of <body> (not nested inside <header>), so position:fixed
-   on them is guaranteed to measure against the real viewport — some mobile
-   browsers mishandle a fixed element nested inside a position:sticky
-   ancestor and shrink it to its content height instead of the full screen,
-   which is what was happening before. */
-.burger{display:none;position:fixed;top:calc(env(safe-area-inset-top,0px) + 11px);right:18px;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;padding:0;z-index:70}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;padding:0;position:relative;z-index:70}
 .burger:before,.burger span,.burger:after{content:"";position:absolute;left:11px;right:11px;height:2px;background:var(--red);transition:.3s}
 .burger:before{top:14px}.burger span{top:21px}.burger:after{top:28px}
 /* works even if JS never loads: the checkbox (hidden) + its label (the burger
@@ -127,6 +123,15 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.96);backdro
 .thanks{border-left:4px solid var(--gold);padding:14px 18px;background:rgba(200,149,31,.08);margin-top:24px}
 
 /* footer */
+/* the translate widget lives in the footer, not the header — the footer has
+   no position:sticky/fixed of its own, so there's nothing for Google's
+   script to collide with the way it did before. */
+.gtranslate{margin:16px auto 0;display:inline-block}
+.gtranslate .goog-te-gadget{font-family:'Hind Siliguri',sans-serif!important;font-size:.85rem!important;color:#CDBBA8!important}
+.gtranslate .goog-te-gadget img{display:none!important}
+.gtranslate select.goog-te-combo{font-size:.85rem;padding:6px 10px;border:1px solid #4B3D6B;border-radius:8px;background:#2A2040;color:#F8EEDF;font-family:'Hind Siliguri',sans-serif}
+body>.skiptranslate.goog-te-gadget,iframe.goog-te-banner-frame{display:none!important}
+body{top:0!important}
 footer{background:var(--night);color:#CDBBA8;text-align:center;padding:34px 18px 20px}
 footer .logo{width:60px;margin:0 auto 10px}
 .social{display:flex;gap:14px;justify-content:center;margin:16px 0}
