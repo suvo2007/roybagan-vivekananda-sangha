@@ -1,4 +1,18 @@
 (function () {
+  // Google Translate sometimes injects its own notification banner at the
+  // top of the page and pushes everything down — this keeps undoing that,
+  // so the layout never looks broken/boxed because of it.
+  (function killGTBanner() {
+    var fix = function () {
+      document.body.style.top = '0px';
+      document.documentElement.style.top = '0px';
+      var f = document.querySelector('iframe.goog-te-banner-frame, .goog-te-banner-frame');
+      if (f) { f.style.display = 'none'; f.style.visibility = 'hidden'; f.style.height = '0'; }
+    };
+    setInterval(fix, 400);
+    fix();
+  })();
+
   // the menu already opens/closes with pure CSS via the hidden checkbox +
   // its label (works even if this script never loads). here we just sync
   // the checkbox state so the dimmed backdrop and auto-close-on-tap work too.
